@@ -1,135 +1,30 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-body {
-  background-color: #0d1117;
-  color: #e6edf3;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.app-container {
-  display: flex;
-  height: 100vh;
-}
-
-.sidebar {
-  background-color: #161b22;
-  width: 270px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid #30363d;
-}
-
-.logo {
-  text-align: center;
-  margin-bottom: 25px;
-}
-
-.logo img {
-  width: 60px;
-  height: 60px;
-  border-radius: 12px;
-}
-
-.logo h1 {
-  margin-top: 10px;
-  color: #58a6ff;
-  font-size: 18px;
-}
-
-.logo span {
-  color: #8b949e;
-  font-size: 14px;
-}
-
-button {
-  background: #238636;
-  border: none;
-  color: white;
-  padding: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-  margin-bottom: 10px;
-}
-
-button:hover {
-  background: #2ea043;
-}
-
-.chat-section {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.chat-header {
-  padding: 15px;
-  border-bottom: 1px solid #30363d;
-  background: #161b22;
-  text-align: center;
-}
-
-.chat-box {
-  flex-grow: 1;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.chat-input {
-  display: flex;
-  border-top: 1px solid #30363d;
-  padding: 10px;
-  background: #161b22;
-}
-
-#userInput {
-  flex-grow: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 6px;
-  outline: none;
-  background: #0d1117;
-  color: white;
-}
-
-#sendBtn {
-  background: #1f6feb;
-  border: none;
-  padding: 10px 18px;
-  margin-left: 10px;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-#sendBtn:hover {
-  background: #388bfd;
-}
-
-.message {
-  margin-bottom: 15px;
-}
-
-.message.user {
-  text-align: right;
-  color: #58a6ff;
-}
-
-.message.bot {
-  text-align: left;
-  color: #c9d1d9;
-}
-
-.typing {
-  display: inline-block;
-  font-style: italic;
-  color: #8b949e;
-}
+*{margin:0;padding:0;box-sizing:border-box}body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;height:100vh;overflow:hidden}
+.app-container{display:flex;height:100vh}
+.sidebar{width:300px;background:#161b22;border-right:1px solid #30363d;display:flex;flex-direction:column;padding:18px;gap:12px;overflow:auto}
+.logo{text-align:center}.logo img{width:56px;height:56px;border-radius:12px}.logo h1{margin-top:8px;font-size:18px;color:#58a6ff}.logo span{font-size:13px;color:#8b949e}
+.auth-box{background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.auth-box input{background:#0d1117;border:1px solid #30363d;border-radius:6px;color:#e6edf3;padding:8px}
+.auth-actions{display:flex;gap:8px}
+.auth-msg{color:#f88;font-size:12px;min-height:16px}
+.primary{background:#238636;border:none;color:#fff;padding:10px;border-radius:6px;cursor:pointer}
+.primary:hover{background:#2ea043}
+.tab{background:#1f6feb;border:none;color:#fff;padding:8px;border-radius:6px;cursor:pointer}
+.tab.active{background:#388bfd}
+.history-title{margin-top:8px;margin-bottom:4px;color:#8b949e;font-size:12px}
+.history{flex:1;overflow:auto;border-top:1px solid #30363d;padding-top:8px}
+.history-item{padding:8px;border:1px solid #30363d;border-radius:6px;margin-bottom:8px;cursor:pointer}
+.history-item:hover{background:#0d1117}
+.content{flex:1;display:flex;flex-direction:column}
+.chat-header{padding:14px;border-bottom:1px solid #30363d;background:#161b22}
+.view{display:none;flex:1;overflow:hidden}
+.view.active{display:flex;flex-direction:column}
+.chat-box{flex:1;overflow:auto;padding:18px}
+.chat-input{display:flex;border-top:1px solid #30363d;background:#161b22;padding:10px;gap:8px}
+.chat-input input{flex:1;padding:10px;border:none;border-radius:6px;background:#0d1117;color:#fff}
+.chat-input button{background:#1f6feb;border:none;padding:10px 16px;border-radius:6px;color:#fff;cursor:pointer}
+.message{margin-bottom:12px}
+.message.user{text-align:right;color:#58a6ff}
+.message.bot{text-align:left;color:#c9d1d9}
+.footer{border-top:1px solid #30363d;background:#0d1117;color:#8b949e;text-align:center;padding:8px}
+.pres-form,.img-form{padding:18px;display:flex;flex-direction:column;gap:10px}
+.img-result img{max-width:100%;border:1px solid #30363d;border-radius:8px}

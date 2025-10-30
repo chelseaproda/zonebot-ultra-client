@@ -13,25 +13,69 @@
         <img src="ZoneBot.png" alt="ZoneBot Logo" />
         <h1>ZoneBot<br><span>By Viktor Buljevac</span></h1>
       </div>
-      <button id="newChat">➕ New Chat</button>
-      <button id="imageTab">🖼️ Image Generator</button>
+
+      <div class="auth-box" id="authBox">
+        <input id="authEmail" placeholder="Email" />
+        <input id="authPassword" type="password" placeholder="Password" />
+        <input id="authName" placeholder="Display name (register only)" />
+        <div class="auth-actions">
+          <button id="loginBtn">Login</button>
+          <button id="registerBtn">Register</button>
+          <button id="logoutBtn" style="display:none">Logout</button>
+        </div>
+        <div id="authMsg" class="auth-msg"></div>
+      </div>
+
+      <button id="newChat" class="primary">➕ New Chat</button>
+      <button id="tabChat" class="tab active">💬 Chat</button>
+      <button id="tabImage" class="tab">🖼️ Image Generator</button>
+      <button id="tabPres" class="tab">📑 Presentations</button>
+
+      <h3 class="history-title">History</h3>
       <div class="history" id="chatHistory"></div>
     </aside>
 
-    <main class="chat-section">
-      <div class="chat-header">
-        <h2>💬 ZoneBot Chat</h2>
-      </div>
+    <main class="content">
+      <header class="chat-header">
+        <h2 id="viewTitle">💬 ZoneBot Chat</h2>
+      </header>
 
-      <div id="chatBox" class="chat-box"></div>
+      <!-- CHAT VIEW -->
+      <section id="viewChat" class="view active">
+        <div id="chatBox" class="chat-box"></div>
+        <div class="chat-input">
+          <input id="userInput" type="text" placeholder="Ask me anything..." />
+          <button id="sendBtn">Send</button>
+        </div>
+      </section>
 
-      <div class="chat-input">
-        <input id="userInput" type="text" placeholder="Ask me anything..." />
-        <button id="sendBtn">Send</button>
-      </div>
+      <!-- IMAGE VIEW -->
+      <section id="viewImage" class="view">
+        <div class="img-form">
+          <input id="imgPrompt" placeholder="Describe the image (e.g., Neon cyberpunk robot chef)"/>
+          <button id="genImgBtn" class="primary">Generate Image</button>
+          <div id="imgMsg" class="auth-msg"></div>
+          <div id="imgResult" class="img-result"></div>
+        </div>
+      </section>
+
+      <!-- PRESENTATION VIEW -->
+      <section id="viewPres" class="view">
+        <div class="pres-form">
+          <input id="presTitle" placeholder="Presentation title (e.g. Burger Empire Kickoff)" />
+          <textarea id="presSlides" rows="10" placeholder="One slide per line. Use: Title: bullet; bullet; bullet
+Example:
+Grand Opening: goals; staff list; fireworks plan
+Menu: burgers; drinks; combos
+Safety: kitchen rules; hygiene; shift tips"></textarea>
+          <button id="makePresBtn" class="primary">Generate PPTX</button>
+          <div id="presMsg" class="auth-msg"></div>
+        </div>
+      </section>
     </main>
   </div>
 
+  <footer class="footer">© 2025 ZoneBot — By Viktor Buljevac</footer>
   <script src="script.js"></script>
 </body>
 </html>
