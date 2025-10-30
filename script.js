@@ -1,43 +1,61 @@
-const API_BASE = "https://zonebot-ultra.onrender.com"; // Replace with your Render backend URL
-
-const chatBox = document.getElementById("chat-box");
-const chatInput = document.getElementById("chat-input");
-const sendBtn = document.getElementById("send-btn");
-const typing = document.getElementById("typing");
-
-sendBtn.addEventListener("click", sendMessage);
-chatInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") sendMessage();
-});
+const API_URL = "https://zonebot-ultra.onrender.com/api/chat";
+const chatBox = document.getElementById("chatBox");
+const userInput = document.getElementById("userInput");
+const sendBtn = document.getElementById("sendBtn");
+const newChatBtn = document.getElementById("newChat");
 
 function appendMessage(sender, text) {
   const msg = document.createElement("div");
   msg.classList.add("message", sender);
-  msg.innerHTML = text;
+  msg.innerHTML = `<b>${sender === "user" ? "You" : "ZoneBot"}:</b> ${text}`;
   chatBox.appendChild(msg);
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
+function appendTyping() {
+  const typing = document.createElement("div");
+  typing.classList.add("typing");
+  typing.textContent = "ZoneBot is typing...";
+  chatBox.appendChild(typing);
+  chatBox.scrollTop = chatBox.scrollHeight;
+  return typing;
+}
+
 async function sendMessage() {
-  const text = chatInput.value.trim();
+  const text = userInput.value.trim();
   if (!text) return;
+
   appendMessage("user", text);
-  chatInput.value = "";
-  typing.classList.remove("hidden");
+  userInput.value = "";
+
+  const typingIndicator = appendTyping();
 
   try {
-    const res = await fetch(`${API_BASE}/api/chat`, {
+    const response = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: text }),
     });
+    const data = await response.json();
 
-    if (!res.ok) throw new Error("Server error");
-    const data = await res.json();
-    appendMessage("bot", data.reply || "(no reply)");
-  } catch (err) {
+    typingIndicator.remove();
+    if (data.reply) {
+      appendMessage("bot", data.reply);
+    } else {
+      appendMessage("bot", "⚠️ Server error. Try again later.");
+    }
+  } catch {
+    typingIndicator.remove();
     appendMessage("bot", "⚠️ Unable to connect to server.");
-  } finally {
-    typing.classList.add("hidden");
   }
 }
+
+sendBtn.addEventListener("click", sendMessage);
+userInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") sendMessage();
+});
+
+newChatBtn.addEventListener("click", () => {
+  chatBox.innerHTML = "";
+  appendMessage("bot", "👋 New chat started! Ask me anything.");
+});
